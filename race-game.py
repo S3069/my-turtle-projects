@@ -9,6 +9,8 @@ t = Turtle()
 title("Race mini-game")
 t.screen.setup(800, 600)
 t.screen.bgpic('grassy background.png')
+
+# Setting up: Finish line
 t.speed(10000)
 t.hideturtle()
 t.color('red')
@@ -32,5 +34,7 @@ p2.color('blue')
 p2.penup()
 p2.goto(-250, -100)
 
+# Dice
+dice = [1, 2, 3, 4, 5, 6]
 
 done()
