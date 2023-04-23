@@ -41,20 +41,30 @@ dice_val = [1, 2, 3, 4, 5, 6]
 # A score of 1 will move the player forward by 22 pixels 
 # This amounts to a maximum of 20 moves or minimum of 4 in order for a player to win
 
-for i in range(20):
-    if p1.pos() > (220, 100):
-        pass
-    elif p2.pos() > (220, -100):
-        pass
-    else:
-        p1_roll = int(input("Please enter the number you rolled on your die: "))
-        if p1_roll in dice_val:
-            print("Player 1 moves forward", p1_roll, "steps")
-            p1.forward(22*p1_roll)
-        p2_roll = int(input("Please enter the number you rolled on your die: "))
-        if p2_roll in dice_val:
-            print("Player 2 moves forward", p2_roll, "steps")
-            p2.forward(22*p2_roll)
-        
+print("Please have 1 die ready before you start the game.\n")
 
+
+def check(position):
+    if p1.pos() >= (220, 100):
+        return True
+    elif p2.pos() >= (220, -100):
+        return True
+
+for i in range(20):
+    p1_roll = int(input("Player 1, please enter the number you rolled on your die: "))
+    if p1_roll in dice_val:
+        print("Player 1 moves forward", p1_roll, "steps")
+        p1.forward(22*p1_roll)
+        if check(position) == True:
+            print("Player 1 wins! Well done")
+            break
+
+    p2_roll = int(input("Player 2, please enter the number you rolled on your die: "))
+    if p2_roll in dice_val:
+        print("Player 2 moves forward", p2_roll, "steps")
+        p2.forward(22*p2_roll)
+        if check(position) == True:
+            print("Player 2 wins! Well done")
+            break
+        
 done()
