@@ -1,5 +1,4 @@
 from turtle import *
-import time
 t = Turtle()
 
 # Made by lvxq37-2
