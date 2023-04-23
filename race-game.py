@@ -39,10 +39,11 @@ dice_val = [1, 2, 3, 4, 5, 6]
 
 # Overall, players need to move 480 pixels to win.
 # A score of 1 will move the player forward by 22 pixels 
-# This amounts to a maximum of 20 moves or minimum of 4 in order for a player to win
+# This amounts to a maximum of 20 moves (or minimum of 4) in order for a player to win
 
-print("Please have 1 die ready before you start the game.\n")
-
+def reset():
+    p1.goto(-260, 100)
+    p2.goto(-260, -100)
 
 def check(position):
     if p1.pos() >= (220, 100):
@@ -50,21 +51,38 @@ def check(position):
     elif p2.pos() >= (220, -100):
         return True
 
-for i in range(20):
-    p1_roll = int(input("Player 1, please enter the number you rolled on your die: "))
-    if p1_roll in dice_val:
-        print("Player 1 moves forward", p1_roll, "steps")
-        p1.forward(22*p1_roll)
-        if check(position) == True:
-            print("Player 1 wins! Well done")
-            break
+def game():
+    for i in range(20): # Maximum limit of 20 moves (valid or invalid) per player
+        p1_roll = int(input("Player 1, please enter the number you rolled on your die: "))
+        if p1_roll in dice_val:
+            print("Player 1 moves forward", p1_roll, "steps")
+            p1.forward(22*p1_roll)
+            if check(position) == True:
+                print("Player 1 wins! Well done")
+                break
+        else:
+            print("Nope! Skip!")
 
-    p2_roll = int(input("Player 2, please enter the number you rolled on your die: "))
-    if p2_roll in dice_val:
-        print("Player 2 moves forward", p2_roll, "steps")
-        p2.forward(22*p2_roll)
-        if check(position) == True:
-            print("Player 2 wins! Well done")
-            break
-        
-done()
+        p2_roll = int(input("Player 2, please enter the number you rolled on your die: "))
+        if p2_roll in dice_val:
+            print("Player 2 moves forward", p2_roll, "steps")
+            p2.forward(22*p2_roll)
+            if check(position) == True:
+                print("Player 2 wins! Well done")
+                break
+        else:
+            print("Nope! Skip!")
+
+
+def main():
+    print("\nPlease have 1 die ready before you start the game.\nRemember: entering an invalid dice roll will result in a penalty - You'll miss your turn!\n")
+    game()
+    rematch = input("Would you like a rematch? y/n: ")
+    if rematch.upper() == "Y":
+        reset()
+        main()
+    else:
+        print("Thanks for playing, goodbye :)")
+        bye()
+
+main()
