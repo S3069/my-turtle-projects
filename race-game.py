@@ -1,5 +1,5 @@
 from turtle import *
-import random
+import math
 
 # Made by lvxq37-2
 # I intentionally kept functions beside their calls so it is clear where the code is used
@@ -8,51 +8,56 @@ import random
 t = Turtle()
 title("Race mini-game")
 t.screen.setup(800, 600)
-t.screen.bgpic('grassy background.png')
+t.screen.bgpic('race-game-files/grassy background.png')
 
 # Setting up: Finish line
+finish_l = 220
 t.speed(10000)
 t.hideturtle()
 t.color('red')
 t.pensize(5)
 t.penup()
-t.goto(220, 180)
+t.goto(finish_l, 180)
 t.right(90)
 t.pendown()
 t.forward(360)
 
-# Setting up: Players
+# Setting up: Players at Start Line
+start_l = -260
 p1 = Turtle()
 p1.shape('turtle')
 p1.color('yellow')
 p1.penup()
-p1.goto(-260, 100)
+p1.goto(start_l, 100)
 
 p2 = Turtle()
 p2.shape('turtle')
 p2.color('blue')
 p2.penup()
-p2.goto(-260, -100)
+p2.goto(start_l, -100)
 
 # Dice
 dice_val = [1, 2, 3, 4, 5, 6]
 
-# Overall, players need to move 480 pixels to win.
+# In a standard game, players need to move 480 pixels to win.
 # A score of 1 will move the player forward by 22 pixels 
 # This amounts to a maximum of 20 moves (or minimum of 4) in order for a player to win
 
+# This calculates the maximum number of turns per player. This may change from 20 if the starting or finish lines are changed
+max_turns = math.ceil((finish_l - start_l)/22)
+
 def reset():
-    p1.goto(-260, 100)
-    p2.goto(-260, -100)
+    p1.goto(start_l, 100)
+    p2.goto(start_l, -100)
 
 def check(position):
-    if p1.pos() >= (220, 100):
+    if p1.pos() >= (finish_l, 100):
         return True
-    elif p2.pos() >= (220, -100):
+    elif p2.pos() >= (finish_l, -100):
         return True
 
 def game():
-    for i in range(20): # Maximum limit of 20 moves (valid or invalid) per player
+    for i in range(max_turns): # Maximum limit is standard 20 moves (valid or invalid) per player
         p1_roll = int(input("Player 1, please enter the number you rolled on your die: "))
         if p1_roll in dice_val:
             print("Player 1 moves forward", p1_roll, "steps")
