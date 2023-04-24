@@ -1,13 +1,20 @@
 # my-turtle-projects
-Here is a collection of my personal turtle projects
+Here is a collection of my personal turtle projects.
 
+> Beginners are encouraged to contribute. Feel free to use, modify or add to any of the files in this repository :)
+
+-------------------------
 **Minecraft Bee**
 
 This file was initially made as a contribution to a different repository, linked <a href="https://github.com/lvxq37-2/turtle-projects">here</a>.
+
+> Beginner task: Add wings to the bee, or make a minecraft block!
+
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/130481780/233816368-31134493-5de6-4143-ab5b-71b9448aaf8d.png" height="300">
+  <img src="https://user-images.githubusercontent.com/130481780/233853652-a93616eb-772e-48c3-a7d8-d7e45e074999.png" height="300">
 </p>
 
+-------------------------
 **Race Game**
 
 Get ready to race your way to victory with this exciting turtle race game! In this two-player game, you'll take turns rolling a dice and entering your score into the program. As you accumulate points, your turtle will race across the screen towards the finish line. With colorful graphics and intuitive gameplay, this game is perfect for players of all ages. So gather your friends and family, and let the turtle race begin!
