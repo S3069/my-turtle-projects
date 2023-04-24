@@ -54,8 +54,13 @@ dice_val = [1, 2, 3, 4, 5, 6]
 max_turns = math.ceil((finish_l - start_l)/22)
 
 def reset():
+    p1.right(180)
     p1.goto(start_l, 100)
+    p1.left(180)
+    
+    p2.right(180)
     p2.goto(start_l, -100)
+    p2.left(180)
 
 def check(position):
     if p1.pos() >= (finish_l, 100):
