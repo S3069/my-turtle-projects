@@ -1,5 +1,6 @@
 from turtle import *
 import math
+import pygame
 
 # Made by lvxq37-2
 # I intentionally kept functions beside their calls so it is clear where the code is used
@@ -9,6 +10,11 @@ t = Turtle()
 title("Race mini-game")
 t.screen.setup(800, 600)
 t.screen.bgpic('race-game-files/grassy background.png')
+
+# Setting up: Background Music
+pygame.mixer.init()
+pygame.mixer.music.load("race-game-files/Wallpaper.mp3") 
+pygame.mixer.music.play(-1,0.0)                             # Music is looped until the game is closed
 
 # Setting up: Finish line
 finish_l = 220
