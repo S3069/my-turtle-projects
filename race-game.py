@@ -12,6 +12,7 @@ t.screen.setup(800, 600)
 t.screen.bgpic('race-game-files/grassy background.png')
 
 # Setting up: Background Music
+# Please run 'python3 -m pip install -U pygame --user' in the terminal if you are experiencing issues with Pygame, or consult the Pygame wiki: https://www.pygame.org/wiki/GettingStarted
 pygame.mixer.init()
 pygame.mixer.music.load("race-game-files/Wallpaper.mp3") 
 pygame.mixer.music.play(-1,0.0)                             # Music is looped until the game is closed
