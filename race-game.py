@@ -44,7 +44,7 @@ p2.penup()
 p2.goto(start_l, -100)
 
 # Dice
-dice_val = [1, 2, 3, 4, 5, 6]
+dice_val = ['1', '2', '3', '4', '5', '6']
 
 # In a standard game, players need to move 480 pixels to win.
 # A score of 1 will move the player forward by 22 pixels 
@@ -59,8 +59,8 @@ def welcome():
     p1_name = "Player 2" if p1_name is "" else p1_name
     p2_name = input("Player 2, please enter your name or press enter to skip: ")
     p2_name = "Player 2" if p2_name is "" else p2_name
-    print("Welcome \n")
-    return p1_name, p2_name
+    print("Welcome", p1_name, "and", p2_name, "\n")
+    return str(p1_name), str(p2_name)
 
 def reset():
     p1.right(180)
@@ -79,20 +79,24 @@ def check(position):
 
 def game(p1_name, p2_name):
     for i in range(max_turns): # Maximum limit is standard 20 moves (valid or invalid) per player
-        p1_roll = int(input(str(p1_name) + " please enter the number you rolled on your die: "))
-        if p1_roll in dice_val:
+        p1_roll = input(p1_name + " please enter the number you rolled on your die: ")
+        if not p1_roll:
+            print("You didn't enter anything, skip!")
+        elif p1_roll in dice_val:
             print(p1_name, "moves forward", p1_roll, "steps")
-            p1.forward(22*p1_roll)
+            p1.forward(22*int(p1_roll))
             if check(position) == True:
                 print("\n", p1_name, "wins! Well done")
                 break
         else:
             print("Nope! Skip!")
 
-        p2_roll = int(input(str(p2_name) + " please enter the number you rolled on your die: "))
-        if p2_roll in dice_val:
+        p2_roll = input(p2_name + " please enter the number you rolled on your die: ")
+        if not p2_roll:
+            print("You didn't enter anything, skip!")
+        elif p2_roll in dice_val:
             print(p2_name, "moves forward", p2_roll, "steps")
-            p2.forward(22*p2_roll)
+            p1.forward(22*int(p2_roll))
             if check(position) == True:
                 print("\n", p2_name, "wins! Well done")
                 break
