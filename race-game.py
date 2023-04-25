@@ -28,18 +28,58 @@ t.goto(finish_l, 180)
 t.right(90)
 t.pendown()
 t.forward(360)
+t.penup()
+
+# Music toggle
+def toggle(x, y):
+    PAUSE.toggle()
+
+class Pause(object):
+
+    def __init__(self):
+        self.paused = pygame.mixer.music.get_busy()
+
+    def toggle(self):
+        if self.paused:
+            pygame.mixer.music.pause()
+        if not self.paused:
+            pygame.mixer.music.unpause()
+        self.paused = not self.paused
+
+PAUSE = Pause()                 # PAUSE now has attributes of class Pause
+
+# Button for toggle button
+b = Turtle()                    # b stands for button
+b.hideturtle()
+b.speed(10000)
+b.penup()
+b_x = finish_l + 60
+b_y = 230
+b.goto(b_x, b_y)
+b.pencolor('black')
+b.fillcolor('red')
+b.shape('circle')
+
+# Text for button
+CURSOR_SIZE = 20
+FONT_SIZE = 12
+FONT = ('Ariel', FONT_SIZE, 'bold')
+b.write("Music", align = "center", font=FONT)
+b.sety(b_y + CURSOR_SIZE + FONT_SIZE)
+b.onclick(toggle)
+b.showturtle()
 
 # Setting up: Players at Start Line
 start_l = -260
 p1 = Turtle()
 p1.shape('turtle')
-p1.color('yellow')
+p1.fillcolor('yellow')
 p1.penup()
 p1.goto(start_l, 100)
 
 p2 = Turtle()
 p2.shape('turtle')
-p2.color('blue')
+p2.fillcolor('blue')
 p2.penup()
 p2.goto(start_l, -100)
 
