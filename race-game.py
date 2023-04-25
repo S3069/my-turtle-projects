@@ -53,6 +53,15 @@ dice_val = [1, 2, 3, 4, 5, 6]
 # This calculates the maximum number of turns per player. This may change from 20 if the starting or finish lines are changed
 max_turns = math.ceil((finish_l - start_l)/22)
 
+def welcome():
+    print("\nPlease have 1 die ready before you start the game.\nRemember: entering an invalid dice roll will result in a penalty - You'll miss your turn!\n")
+    p1_name = input("Player 1, please enter your name or press enter to skip: ")
+    p1_name = "Player 2" if p1_name is "" else p1_name
+    p2_name = input("Player 2, please enter your name or press enter to skip: ")
+    p2_name = "Player 2" if p2_name is "" else p2_name
+    print("Welcome \n")
+    return p1_name, p2_name
+
 def reset():
     p1.right(180)
     p1.goto(start_l, 100)
@@ -68,32 +77,32 @@ def check(position):
     elif p2.pos() >= (finish_l, -100):
         return True
 
-def game():
+def game(p1_name, p2_name):
     for i in range(max_turns): # Maximum limit is standard 20 moves (valid or invalid) per player
-        p1_roll = int(input("Player 1, please enter the number you rolled on your die: "))
+        p1_roll = int(input(str(p1_name) + " please enter the number you rolled on your die: "))
         if p1_roll in dice_val:
-            print("Player 1 moves forward", p1_roll, "steps")
+            print(p1_name, "moves forward", p1_roll, "steps")
             p1.forward(22*p1_roll)
             if check(position) == True:
-                print("Player 1 wins! Well done")
+                print("\n", p1_name, "wins! Well done")
                 break
         else:
             print("Nope! Skip!")
 
-        p2_roll = int(input("Player 2, please enter the number you rolled on your die: "))
+        p2_roll = int(input(str(p2_name) + " please enter the number you rolled on your die: "))
         if p2_roll in dice_val:
-            print("Player 2 moves forward", p2_roll, "steps")
+            print(p2_name, "moves forward", p2_roll, "steps")
             p2.forward(22*p2_roll)
             if check(position) == True:
-                print("Player 2 wins! Well done")
+                print("\n", p2_name, "wins! Well done")
                 break
         else:
             print("Nope! Skip!")
 
 
 def main():
-    print("\nPlease have 1 die ready before you start the game.\nRemember: entering an invalid dice roll will result in a penalty - You'll miss your turn!\n")
-    game()
+    p1_name, p2_name = welcome()
+    game(p1_name, p2_name)
     rematch = input("Would you like a rematch? y/n: ")
     if rematch.upper() == "Y":
         reset()
