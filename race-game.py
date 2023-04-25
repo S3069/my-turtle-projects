@@ -99,7 +99,7 @@ def welcome():
     p1_name = "Player 2" if p1_name is "" else p1_name
     p2_name = input("Player 2, please enter your name or press enter to skip: ")
     p2_name = "Player 2" if p2_name is "" else p2_name
-    print("Welcome", p1_name, "and", p2_name, "\n")
+    print("Welcome " + p1_name + " and " + p2_name + "!\n")
     return str(p1_name), str(p2_name)
 
 def reset():
@@ -119,29 +119,29 @@ def check(position):
 
 def game(p1_name, p2_name):
     for i in range(max_turns): # Maximum limit is standard 20 moves (valid or invalid) per player
-        p1_roll = input(p1_name + " please enter the number you rolled on your die: ")
+        p1_roll = input(p1_name + ", please enter the number you rolled on your die: ")
         if not p1_roll:
             print("You didn't enter anything, skip!")
         elif p1_roll in dice_val:
             print(p1_name, "moves forward", p1_roll, "steps")
             p1.forward(22*int(p1_roll))
             if check(position) == True:
-                print("\n", p1_name, "wins! Well done")
+                print("\n" + p1_name + "wins! Well done")
                 break
         else:
-            print("Nope! Skip!")
+            print("Skip!")
 
-        p2_roll = input(p2_name + " please enter the number you rolled on your die: ")
+        p2_roll = input(p2_name + ", please enter the number you rolled on your die: ")
         if not p2_roll:
             print("You didn't enter anything, skip!")
         elif p2_roll in dice_val:
             print(p2_name, "moves forward", p2_roll, "steps")
-            p1.forward(22*int(p2_roll))
+            p2.forward(22*int(p2_roll))
             if check(position) == True:
-                print("\n", p2_name, "wins! Well done")
+                print("\n" + p2_name + "wins! Well done")
                 break
         else:
-            print("Nope! Skip!")
+            print("Skip!")
 
 
 def main():
