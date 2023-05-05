@@ -126,7 +126,7 @@ def game(p1_name, p2_name):
             print(p1_name, "moves forward", p1_roll, "steps")
             p1.forward(22*int(p1_roll))
             if check(position) == True:
-                print("\n" + p1_name + "wins! Well done")
+                print("\n" + p1_name + " wins! Well done")
                 break
         else:
             print("Skip!")
@@ -138,21 +138,22 @@ def game(p1_name, p2_name):
             print(p2_name, "moves forward", p2_roll, "steps")
             p2.forward(22*int(p2_roll))
             if check(position) == True:
-                print("\n" + p2_name + "wins! Well done")
+                print("\n" + p2_name + " wins! Well done")
                 break
         else:
             print("Skip!")
 
 
-def main():
-    p1_name, p2_name = welcome()
+def main(p1_name, p2_name):
     game(p1_name, p2_name)
     rematch = input("Would you like a rematch? y/n: ")
     if rematch.upper() == "Y":
+        print("\n")
         reset()
-        main()
+        main(p1_name, p2_name)
     else:
         print("Thanks for playing, goodbye :)")
         bye()
 
-main()
+p1_name, p2_name = welcome()
+main(p1_name, p2_name)
